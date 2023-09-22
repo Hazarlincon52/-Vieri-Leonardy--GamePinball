@@ -7,6 +7,7 @@ public class BumperController : MonoBehaviour
     public Collider bola;
     public float multiplier;
     public Color color;
+   
 
     private Renderer renderer;
     private Animator animator;
@@ -15,10 +16,9 @@ public class BumperController : MonoBehaviour
     {
         renderer = GetComponent<Renderer>();
         animator = GetComponent<Animator>();
-
         renderer.material.color = color;
+        
     }
-
    
 
     private void OnCollisionEnter(Collision collision)
@@ -31,11 +31,9 @@ public class BumperController : MonoBehaviour
 
             //Animasi
             animator.SetTrigger("Hit");
+
             //Warna hit
-            for (int i=1; i>= 20; i++)
-            {
-                renderer.material.color = color;
-            }
+            
         }
     }
 }
