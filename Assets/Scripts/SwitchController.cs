@@ -11,9 +11,11 @@ public class SwitchController : MonoBehaviour
         Blink
     }
 
+    public AudioManager audiomanager;
     public Collider bola;
     public Material offMaterial;
     public Material onMaterial;
+
 
     private SwitchState state;
     private Renderer renderer;
@@ -31,6 +33,7 @@ public class SwitchController : MonoBehaviour
         if (other == bola)
         {
             Toggle();
+            audiomanager.PlaySwitchSound(other.transform.position);
         }
     }
 
