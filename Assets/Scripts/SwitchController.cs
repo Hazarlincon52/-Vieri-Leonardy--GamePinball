@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SwitchController : MonoBehaviour
 {
@@ -12,10 +13,12 @@ public class SwitchController : MonoBehaviour
     }
 
     public AudioManager audiomanager;
+    public ScoreManager scoremanager;
     public Collider bola;
     public Material offMaterial;
     public Material onMaterial;
 
+    public float score;
 
     private SwitchState state;
     private Renderer renderer;
@@ -34,6 +37,7 @@ public class SwitchController : MonoBehaviour
         {
             Toggle();
             audiomanager.PlaySwitchSound(other.transform.position);
+
         }
     }
 
@@ -57,6 +61,9 @@ public class SwitchController : MonoBehaviour
 
     private void Toggle()
     {
+        // tambah score
+        scoremanager.AddScore(score);
+
         if (state == SwitchState.On)
         {
             Set(false);

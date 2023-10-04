@@ -13,17 +13,13 @@ public class AudioManager : MonoBehaviour
     public AudioClip[] midSFX;
     public AudioClip[] lowSFX;
     public AudioClip[] siwtchSFX;
+    public AudioClip[] raiseSFX;
+    public AudioClip[] releaseSFX;
 
     // Start is called before the first frame update
     void Start()
     {
         PlayBGM();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void PlayBGM()
@@ -55,6 +51,16 @@ public class AudioManager : MonoBehaviour
     public void PlaySwitchSound(Vector3 spawnPosition)
     {
         sfxAudioSource.clip = siwtchSFX[Random.Range(0, siwtchSFX.Length)];
+        GameObject.Instantiate(sfxAudioSource, spawnPosition, Quaternion.identity);
+    }
+    public void PlayRaiseHigeSound(Vector3 spawnPosition)
+    {
+        sfxAudioSource.clip = raiseSFX[Random.Range(0, raiseSFX.Length)];
+        GameObject.Instantiate(sfxAudioSource, spawnPosition, Quaternion.identity);
+    }
+    public void PlayReleaseHigeSound(Vector3 spawnPosition)
+    {
+        sfxAudioSource.clip = releaseSFX[Random.Range(0, releaseSFX.Length)];
         GameObject.Instantiate(sfxAudioSource, spawnPosition, Quaternion.identity);
     }
 

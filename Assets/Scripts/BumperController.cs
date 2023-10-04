@@ -8,10 +8,12 @@ public class BumperController : MonoBehaviour
 {
     public Collider bola;
     public float multiplier;
+    public float score;
     public Color color;
     private Color colorChange;
 
     public AudioManager audioManager;
+    public ScoreManager scoreManager;
     public VFXManager vfxManager;
 
     private Renderer renderer;
@@ -44,6 +46,9 @@ public class BumperController : MonoBehaviour
             //playvfx
             vfxManager.PlayVFX(collision.transform.position);
 
+            //score add
+            scoreManager.AddScore(score);
+
             //warna berubah jika hit
             StartCoroutine(ChangeColor());
             
@@ -56,14 +61,14 @@ public class BumperController : MonoBehaviour
         while (renderer.material.color != colorChange)
         {
             //berubah menjadi warna merah secara perlahan
-            renderer.material.color = Color.Lerp(renderer.material.color, colorChange, 0.2f);
+            renderer.material.color = Color.Lerp(renderer.material.color, colorChange, 0.4f);
             yield return new WaitForEndOfFrame();
         }
 
         while (renderer.material.color != color)
         {
             //berubah menjadi warna semula secara perlahan
-            renderer.material.color = Color.Lerp(renderer.material.color, color, 0.2f);
+            renderer.material.color = Color.Lerp(renderer.material.color, color, 0.4f);
             yield return new WaitForEndOfFrame();
         }
 

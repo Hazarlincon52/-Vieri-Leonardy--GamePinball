@@ -31,15 +31,18 @@ public class BallController : MonoBehaviour
         //jika menabarak tembok
         if (collision.gameObject.tag == "Wall")
         {
-            if (Math.Abs(collision.impulse.z) >= maxSpeed/1.5f)//jika tabrakan bola ke tembok kuat, suara besar
+            //jika tabrakan bola ke tembok kuat, suara besar
+            if (Math.Abs(collision.impulse.z) >= maxSpeed/1.5f || Math.Abs(collision.impulse.x) >= maxSpeed / 1.5f)
             {
                 audioManager.PlayHighSound(collision.transform.position);
             }
-            else if (Math.Abs(collision.impulse.z) <= maxSpeed/1.5 && Math.Abs(collision.impulse.z) >= maxSpeed/3)//jika tabrakan bola ke tembok sedang, suara sedang
+            //jika tabrakan bola ke tembok sedang, suara sedang
+            else if (Math.Abs(collision.impulse.z) <= maxSpeed/1.5 && Math.Abs(collision.impulse.z) >= maxSpeed/4 || Math.Abs(collision.impulse.x) <= maxSpeed / 1.5 && Math.Abs(collision.impulse.x) >= maxSpeed / 4)
             {
                 audioManager.PlayMidSound(collision.transform.position);
             }
-            else if (Math.Abs(collision.impulse.z) <= maxSpeed/3 && Math.Abs(collision.impulse.z) >= 1.5f)//jika tabrakan bola ke tembok kecil, suara kecil
+            //jika tabrakan bola ke tembok kecil, suara kecil
+            else if (Math.Abs(collision.impulse.z) <= maxSpeed/4 && Math.Abs(collision.impulse.z) >= 1.2f || Math.Abs(collision.impulse.x) <= maxSpeed / 4 && Math.Abs(collision.impulse.x) >= 1.2f)
             {
                 audioManager.PlayLowSound(collision.transform.position);
             }
@@ -47,7 +50,7 @@ public class BallController : MonoBehaviour
             {
                 //No Sound
             }
-            //Debug.Log(Math.Abs(collision.impulse.z));
+            //Debug.Log(collision.impulse);
         }
         
     }
